@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/wenchaosong/PickerView.svg)](https://jitpack.io/#wenchaosong/PickerView)
+
 ```java
-compile 'com.contrarywind:Android-PickerView:4.1.9'
+implementation 'com.github.wenchaosong:PickerView:v1.0.0'
 ```
