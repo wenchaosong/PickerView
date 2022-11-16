@@ -5,4 +5,15 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <!--设置点击背景颜色-->
+        <item name="colorControlHighlight">@android:color/transparent</item>
+    </style>
+
+    <style name="OtherPageStyle" parent="CustomTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>

@@ -3,8 +3,6 @@ package com.bigkoo.pickerviewdemo;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +11,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.TimePickerView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,7 +26,6 @@ public class TestFragment extends Fragment implements View.OnClickListener {
     private Button btnShow;
     private TimePickerView pvTime;
     private FrameLayout mFrameLayout;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,12 +49,12 @@ public class TestFragment extends Fragment implements View.OnClickListener {
         Calendar selectedDate = Calendar.getInstance();
 
         Calendar startDate = Calendar.getInstance();
-        startDate.set(2013, 0, 23);
+        startDate.set(2013,0,23);
 
         Calendar endDate = Calendar.getInstance();
-        endDate.set(2019, 11, 28);
+        endDate.set(2019,11,28);
         //时间选择器
-        pvTime = new TimePickerBuilder(getActivity(), new OnTimeSelectListener() {
+        pvTime = new TimePickerView.Builder(getActivity(), new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 // 这里回调过来的v,就是show()方法里面所添加的 View 参数，如果show的时候没有添加参数，v则为null
@@ -89,11 +87,11 @@ public class TestFragment extends Fragment implements View.OnClickListener {
                 .setType(new boolean[]{true, true, true, false, false, false})
                 .setLabel("", "", "", "", "", "") //设置空字符串以隐藏单位提示   hide label
                 .setDividerColor(Color.DKGRAY)
-                .setContentTextSize(20)
+                .setContentSize(20)
                 .setDate(selectedDate)
-                .setRangDate(startDate, selectedDate)
+                .setRangDate(startDate,selectedDate)
                 .setDecorView(mFrameLayout)//非dialog模式下,设置ViewGroup, pickerView将会添加到这个ViewGroup中
-                .setOutSideColor(0x00000000)
+                .setBackgroundId(0x00000000)
                 .setOutSideCancelable(false)
                 .build();
 
@@ -102,7 +100,7 @@ public class TestFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        pvTime.show(v, false);//弹出时间选择器，传递参数过去，回调的时候则可以绑定此view
+        pvTime.show(v,false);//弹出时间选择器，传递参数过去，回调的时候则可以绑定此view
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示
