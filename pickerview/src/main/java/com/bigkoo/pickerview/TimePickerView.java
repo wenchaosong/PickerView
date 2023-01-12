@@ -26,6 +26,7 @@ import java.util.Date;
  * Updated by XiaoSong on 2017-2-22.
  */
 public class TimePickerView extends BasePickerView implements View.OnClickListener {
+    private Context mContext;
     private int layoutRes;
     private CustomListener customListener;
 
@@ -80,6 +81,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     //构造方法
     public TimePickerView(Builder builder) {
         super(builder.context);
+        this.mContext = builder.context;
         this.timeSelectListener = builder.timeSelectListener;
         this.gravity = builder.gravity;
         this.type = builder.type;
@@ -606,6 +608,11 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setType(boolean[] value) {
+        this.type = value;
+        initView(mContext);
     }
 
     public boolean isLunarCalendar() {
